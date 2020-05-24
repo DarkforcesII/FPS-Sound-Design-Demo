@@ -25,19 +25,14 @@ public class Soldier : MonoBehaviour
 
     private Animator mAnimator = null;
 
-    // audio
-    private AudioSource sfxSource;
-    public AudioClip bulletClip;
-    [SerializeField]
-    private float pitchMin, pitchMax;
+    // referencing audio script
+    public SfxScript sfxScript;
 
     // Start is called before the first frame update
     void Awake()
     {
         mEnemy = transform.GetChild(0).gameObject;
         mAnimator = mEnemy.GetComponent<Animator>();
-
-        sfxSource = this.gameObject.AddComponent<AudioSource>();
     }
 
     public void Activate()
@@ -56,11 +51,7 @@ public class Soldier : MonoBehaviour
     IEnumerator ShotGunSound()
     {
         yield return new WaitForSeconds(sfxTime);
-        // shoot sfx
-        sfxSource.clip = bulletClip;
-        sfxSource.pitch = UnityEngine.Random.Range(pitchMin, pitchMax);
-        sfxSource.Play();
-   
+        sfxScript.ShootSound();
     }
 
     private void MoveUpwards()

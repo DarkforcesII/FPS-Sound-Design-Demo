@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameController :  Singleton<GameController> 
 {
+    public SfxScript sfxScript;
+    // add player grunts
+
+    [Tooltip("This is where you will place your audio clips. Element 0 will be the track that plays at the start. " +
+        "Element 1 will be the next layer to fade in and Element 2 will be the last.")]
     public AudioClip[] musicLayerClips;
    
     private AudioSource musicSource1;
@@ -12,7 +17,22 @@ public class GameController :  Singleton<GameController>
 
     float lerpSpeed1;
     float lerpSpeed2;
-    public float fadeTime;
+
+    [Tooltip("This is the time in seconds that it takes for the music layers to fade in")]
+    [SerializeField]
+    float fadeTime;
+
+    [Tooltip("This is the number that determines when the 2nd music layer will fade in. " +
+        "For instance, if set to 80, the layer will fade in once the player's health drops to 80 or below. " +
+        "You can also pres 1 to fade in the layer right away.")]
+    [SerializeField]
+    private int fadeParameter1;
+
+    [Tooltip("This is the number that determines when the 2nd music layer will fade in. " +
+        "For instance, if set to 80, the layer will fade in once the player's health drops to 80 or below. " +
+        "You can also pres 2 to fade in the layer right away.")]
+    [SerializeField]
+    private int fadeParameter2;
 
     protected GameController() { }
 
@@ -31,9 +51,9 @@ public class GameController :  Singleton<GameController>
         musicSource2.clip = musicLayerClips[1];
         musicSource3.clip = musicLayerClips[2];
 
-        musicSource1.volume = 0.0f;
+        musicSource1.volume = 1;
         musicSource2.volume = 0.0f;
-        musicSource3.volume = 0.7f;
+        musicSource3.volume = 0.0f;
 
         musicSource1.loop = true;
         musicSource2.loop = true;
@@ -56,21 +76,21 @@ public class GameController :  Singleton<GameController>
 
     private void Update()
     {
-        if (mHealth <= 80)
+        if (mHealth <= fadeParameter1)
         {
             StartCoroutine(MusicLayer2FadeIn());
         }
-        if (mHealth <= 50)
+        if (mHealth <= fadeParameter2)
         {
             StartCoroutine(MusicLayer3FadeIn());
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            mHealth = 50;
+            mHealth = fadeParameter1;
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            mHealth = 80;
+            mHealth = fadeParameter2;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -83,10 +103,10 @@ public class GameController :  Singleton<GameController>
     {
         yield return null;
 
-        while (musicSource1.volume < 0.7f)
+        while (musicSource2.volume < 1)
         {
             lerpSpeed1 += Time.deltaTime;
-            musicSource1.volume = Mathf.Lerp(0, 1, lerpSpeed1);
+            musicSource2.volume = Mathf.Lerp(0, 1, lerpSpeed1);
             yield return new WaitForSecondsRealtime(fadeTime);
         }
     }
@@ -95,10 +115,10 @@ public class GameController :  Singleton<GameController>
     {
         yield return null;
 
-        while (musicSource2.volume < 0.7f)
+        while (musicSource3.volume < 1f)
         {
             lerpSpeed2 += Time.deltaTime;
-            musicSource2.volume = Mathf.Lerp(0, 1, lerpSpeed1);
+            musicSource3.volume = Mathf.Lerp(0, 1, lerpSpeed1);
             yield return new WaitForSecondsRealtime(fadeTime);
         }
     }
@@ -122,6 +142,8 @@ public class GameController :  Singleton<GameController>
             return;
 
         mHealth -= damage;
+
+        // player hit
 
         if (mHealth <= 0)
         {

@@ -721,9 +721,7 @@ MonoBehaviour:
   DownTime: 1
   height: 0.22
   sfxTime: 0.5
-  bulletClip: {fileID: 8300000, guid: 069f05667b62597409e4ab69bb5066ea, type: 3}
-  pitchMin: 0.9
-  pitchMax: 1
+  sfxScript: {fileID: 1653570648}
 --- !u!4 &783856772
 Transform:
   m_ObjectHideFlags: 0
@@ -892,10 +890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3ac46ec67899542a9c8da92e6e58bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmittersToStartListeningTo: []
-  EmittersToStopListeningTo: []
-  isDefaultListener: 1
-  listenerId: 0
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -965,18 +959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c6e586453d9784cbcf1bad0eee05f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 0
-  isStaticObject: 0
-  m_Collider: {fileID: 0}
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  isRegistered: 0
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,10 +971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35b5b87bdb1cd548aa9ad334827138a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testGunShot:
-    idInternal: 0
-    valueGuidInternal: []
-    WwiseObjectReference: {fileID: 0}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,19 +983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e433bce64f61c44397127779271a9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  didDestroy: 0
-  triggerList: f7e1664c
-  useOtherObject: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: []
-    WwiseObjectReference: {fileID: 0}
-  decodeBank: 0
-  loadAsynchronous: 0
-  saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
-  bankNameInternal: 
-  valueGuidInternal: []
 --- !u!114 &963194232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,19 +995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e433bce64f61c44397127779271a9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  didDestroy: 0
-  triggerList: f7e1664c
-  useOtherObject: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: []
-    WwiseObjectReference: {fileID: 0}
-  decodeBank: 0
-  loadAsynchronous: 0
-  saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
-  bankNameInternal: 
-  valueGuidInternal: []
 --- !u!82 &963194233
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1909,9 +1861,7 @@ MonoBehaviour:
   DownTime: 1
   height: 0.22
   sfxTime: 0.5
-  bulletClip: {fileID: 8300000, guid: 069f05667b62597409e4ab69bb5066ea, type: 3}
-  pitchMin: 0.9
-  pitchMax: 1
+  sfxScript: {fileID: 1653570648}
 --- !u!4 &1480447998
 Transform:
   m_ObjectHideFlags: 0
@@ -2196,6 +2146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1653570646}
   - component: {fileID: 1653570647}
+  - component: {fileID: 1653570648}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2229,11 +2180,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0d0c0c5663c5c4fa91c7c970ae5d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxScript: {fileID: 1653570648}
   musicLayerClips:
+  - {fileID: 8300000, guid: adc61fcfe0977094eb0c566f9aa0aacc, type: 3}
   - {fileID: 8300000, guid: c74235a05223b1545ba5fa364a672321, type: 3}
   - {fileID: 8300000, guid: 30f9f546b4f52e6478f8cef995498162, type: 3}
-  - {fileID: 8300000, guid: adc61fcfe0977094eb0c566f9aa0aacc, type: 3}
   fadeTime: 5
+  fadeParameter1: 90
+  fadeParameter2: 80
+--- !u!114 &1653570648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653570645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d456062a8aa056459c50891159ff3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletClip: {fileID: 8300000, guid: 069f05667b62597409e4ab69bb5066ea, type: 3}
+  enemyHitClips:
+  - {fileID: 8300000, guid: 68bc12e1e327d414282c8407a373d6fa, type: 3}
+  - {fileID: 8300000, guid: 56dd5c3af161e8946ac6a60b880e4dfb, type: 3}
+  - {fileID: 8300000, guid: 37654d8dcfbe16f46af6f44067c449fd, type: 3}
+  - {fileID: 8300000, guid: 36ed4608cee30a84482b65ba5ce4c600, type: 3}
+  playerHitClips: []
+  gunPitchMin: 0.9
+  gunPitchMax: 1
 --- !u!1001 &1713443943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2730,14 +2705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20febc038d943af4c906ddc347119032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletClip: {fileID: 8300000, guid: 069f05667b62597409e4ab69bb5066ea, type: 3}
-  enemyHitClips:
-  - {fileID: 8300000, guid: 68bc12e1e327d414282c8407a373d6fa, type: 3}
-  - {fileID: 8300000, guid: 56dd5c3af161e8946ac6a60b880e4dfb, type: 3}
-  - {fileID: 8300000, guid: 37654d8dcfbe16f46af6f44067c449fd, type: 3}
-  - {fileID: 8300000, guid: 36ed4608cee30a84482b65ba5ce4c600, type: 3}
-  pitchMin: 0.9
-  pitchMax: 1
+  sfxScript: {fileID: 1653570648}
 --- !u!1 &1925735425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,9 +2889,7 @@ MonoBehaviour:
   DownTime: 1
   height: 0.22
   sfxTime: 0.5
-  bulletClip: {fileID: 8300000, guid: 069f05667b62597409e4ab69bb5066ea, type: 3}
-  pitchMin: 0.9
-  pitchMax: 1
+  sfxScript: {fileID: 1653570648}
 --- !u!4 &2001646701
 Transform:
   m_ObjectHideFlags: 0
@@ -2973,9 +2939,7 @@ MonoBehaviour:
   DownTime: 1
   height: 0.22
   sfxTime: 0.5
-  bulletClip: {fileID: 8300000, guid: 069f05667b62597409e4ab69bb5066ea, type: 3}
-  pitchMin: 0.9
-  pitchMax: 1
+  sfxScript: {fileID: 1653570648}
 --- !u!4 &2028200461
 Transform:
   m_ObjectHideFlags: 0
@@ -3025,9 +2989,7 @@ MonoBehaviour:
   DownTime: 1
   height: 0.22
   sfxTime: 0.5
-  bulletClip: {fileID: 8300000, guid: 069f05667b62597409e4ab69bb5066ea, type: 3}
-  pitchMin: 0.9
-  pitchMax: 1
+  sfxScript: {fileID: 1653570648}
 --- !u!4 &2089725651
 Transform:
   m_ObjectHideFlags: 0
@@ -3210,9 +3172,7 @@ MonoBehaviour:
   DownTime: 1
   height: 0.22
   sfxTime: 0.5
-  bulletClip: {fileID: 8300000, guid: 069f05667b62597409e4ab69bb5066ea, type: 3}
-  pitchMin: 0.9
-  pitchMax: 1
+  sfxScript: {fileID: 1653570648}
 --- !u!4 &2139790331
 Transform:
   m_ObjectHideFlags: 0
