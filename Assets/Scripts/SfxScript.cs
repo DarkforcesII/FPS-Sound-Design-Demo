@@ -5,7 +5,13 @@ using UnityEngine;
 public class SfxScript : MonoBehaviour
 {
     public AudioClip bulletClip;
+
+    [Tooltip("This is where you will place the sounds for when the enemy is hit. " +
+        "The size can be changed to however many sounds you imported.")]
     public AudioClip[] enemyHitClips;
+
+    [Tooltip("This is where you will place the sounds for when the enemy is hit. " +
+        "The can be changed to however many sounds you imported.")]
     public AudioClip[] playerHitClips;
 
     [Tooltip("This is what will control the pitch range of the gun clip.")]
@@ -41,7 +47,7 @@ public class SfxScript : MonoBehaviour
     }
     public void PlayerHitSound()
     {
-        sfxSource3.clip = playerHitClips[Random.Range(0, enemyHitClips.Length)];
+        sfxSource3.clip = playerHitClips[Random.Range(0, playerHitClips.Length)];
         sfxSource3.Play();
     }
 

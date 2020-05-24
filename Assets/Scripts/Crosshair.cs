@@ -34,7 +34,7 @@ public class Crosshair : MonoBehaviour
                     sfxScript.EnemyHitSound();
                     enemyHealth++;
                     print(enemyHealth);
-                    if (enemyHealth == 3)
+                    if (enemyHealth == 5)
                     {
                         Destroy(hit.transform.gameObject);
                     }

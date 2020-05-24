@@ -143,7 +143,8 @@ public class GameController :  Singleton<GameController>
 
         mHealth -= damage;
 
-        // player hit
+        // player hit coroutine
+        StartCoroutine(DelayPlayerHitSound());
 
         if (mHealth <= 0)
         {
@@ -168,6 +169,10 @@ public class GameController :  Singleton<GameController>
         get { return mTime; }
     }
 
-
+    IEnumerator DelayPlayerHitSound()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        sfxScript.PlayerHitSound();
+    }
 
 }

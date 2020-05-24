@@ -2206,7 +2206,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 56dd5c3af161e8946ac6a60b880e4dfb, type: 3}
   - {fileID: 8300000, guid: 37654d8dcfbe16f46af6f44067c449fd, type: 3}
   - {fileID: 8300000, guid: 36ed4608cee30a84482b65ba5ce4c600, type: 3}
-  playerHitClips: []
+  playerHitClips:
+  - {fileID: 8300000, guid: 5a3b8ae518f7a7c40a5a240236a3c7a9, type: 3}
+  - {fileID: 8300000, guid: de00cb30ad1910d438235ba6cd723688, type: 3}
+  - {fileID: 8300000, guid: 0add13cee2f0e144fb607d99ea1943ad, type: 3}
   gunPitchMin: 0.9
   gunPitchMax: 1
 --- !u!1001 &1713443943
