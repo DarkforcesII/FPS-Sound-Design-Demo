@@ -37,6 +37,8 @@ public class Crosshair : MonoBehaviour
                     if (enemyHealth == 5)
                     {
                         Destroy(hit.transform.gameObject);
+                        UnityEditor.EditorApplication.isPlaying = false;
+                        Application.Quit();
                     }
                 }
             }

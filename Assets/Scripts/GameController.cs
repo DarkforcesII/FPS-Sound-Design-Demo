@@ -20,7 +20,7 @@ public class GameController :  Singleton<GameController>
 
     [Tooltip("This is the time in seconds that it takes for the music layers to fade in")]
     [SerializeField]
-    float fadeTime;
+    float fadeInTime;
 
     [Tooltip("This is the number that determines when the 2nd music layer will fade in. " +
         "For instance, if set to 80, the layer will fade in once the player's health drops to 80 or below. " +
@@ -97,6 +97,7 @@ public class GameController :  Singleton<GameController>
             QuitGame();
             print("quit game");
         }
+        ExitGame();
     }
 
     IEnumerator MusicLayer2FadeIn()
@@ -107,7 +108,7 @@ public class GameController :  Singleton<GameController>
         {
             lerpSpeed1 += Time.deltaTime;
             musicSource2.volume = Mathf.Lerp(0, 1, lerpSpeed1);
-            yield return new WaitForSecondsRealtime(fadeTime);
+            yield return new WaitForSecondsRealtime(fadeInTime);
         }
     }
 
@@ -119,7 +120,7 @@ public class GameController :  Singleton<GameController>
         {
             lerpSpeed2 += Time.deltaTime;
             musicSource3.volume = Mathf.Lerp(0, 1, lerpSpeed1);
-            yield return new WaitForSecondsRealtime(fadeTime);
+            yield return new WaitForSecondsRealtime(fadeInTime);
         }
     }
 
@@ -151,6 +152,8 @@ public class GameController :  Singleton<GameController>
             mHealth = 0;
             mGameOver = true;
             CancelInvoke("Count");
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
     }
 
@@ -171,8 +174,19 @@ public class GameController :  Singleton<GameController>
 
     IEnumerator DelayPlayerHitSound()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.25f);
         sfxScript.PlayerHitSound();
     }
 
+    private void ExitGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        if (mTime == 0)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+    }
 }
